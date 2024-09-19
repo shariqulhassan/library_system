@@ -1,0 +1,32 @@
+<!-- templates/library_system/category_view.html -->
+{% extends 'library_system/base.html' %}
+
+{% block content %}
+<h2>Books in {{ category.name }}</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.description }}</td>
+            <td>
+                {% if book.borrowed %}
+                    Borrowed
+                {% else %}
+                    Available
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

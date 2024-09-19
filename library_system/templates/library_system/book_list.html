@@ -1,0 +1,47 @@
+<!-- templates/library_system/book_list.html -->
+{% extends 'library_system/base.html' %}
+
+{% block content %}
+<h2>List of Books</h2>
+<form method="GET" action="{% url 'book_list' %}">
+    <input type="text" name="q" placeholder="Search by title or author" class="form-control mb-3" value="{{ request.GET.q }}">
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.description }}</td>
+            <td>{{ book.category.name }}</td>
+            <td>
+                {% if book.borrowed %}
+                    Borrowed
+                {% else %}
+                    Available
+                {% endif %}
+            </td>
+            <td>
+                {% if book.borrowed %}
+                    <a href="{% url 'return_book' book.id %}" class="btn btn-warning">Return</a>
+                {% else %}
+                    <a href="{% url 'borrow_book' book.id %}" class="btn btn-success">Borrow</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
