@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap5 %}
+    {%bootstrap_css%}
+    {%bootstrap_javascript%}
+
+    {% load static%}
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <div class="container">
+        <ul class="nav bg-info">
+            <li class="nav-item">
+                <a href="/" class="nav-link link-light">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="/members" class="nav-link">Members</a>
+            </li>
+        </ul>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

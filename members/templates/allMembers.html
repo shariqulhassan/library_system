@@ -1,0 +1,18 @@
+{% extends 'master.html' %}
+{% block title %}
+    List of all Members
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-success"> Users List</h1>
+    <ul class="bg-warning">
+        {% for x in users%}
+        <li><a href="details/{{x.id}}"> {{x.name}} </a></li>
+        <li><a href="details/{{x.id}}"> {{x.age}} </a></li>
+        {% endfor %}
+
+    </ul>
+
+
+
+{% endblock %}
